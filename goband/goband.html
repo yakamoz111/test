@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>goband</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background: url(images/bg.bmp);
+        }
+
+        ul {
+            margin: 100px auto;
+            width: 480px;
+        }
+
+        li {
+            list-style: none;
+            float: left;
+            width: 32px;
+            height: 32px;
+            border: 1px solid #000;
+            margin-left: -1px;
+            margin-top: -1px;
+            box-sizing: border-box;
+        }
+
+        li:nth-of-type(15n) {
+            border: none;
+            border-left: 1px solid #000;
+        }
+
+        li:nth-last-of-type(-n + 15) {
+            border: none;
+            border-top: 1px solid #000;
+        }
+
+        li:last-of-type {
+            border-top: none;
+        }
+
+        span {
+            display: block;
+            opacity: 0;
+            width: 26px;
+            height: 26px;
+            position: relative;
+            top: -13px;
+            left: -13px;
+            overflow: hidden;
+        }
+
+        i {
+            display: none;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background-repeat: no-repeat;
+        }
+        .dian1,
+        .dian2,
+        .dian3,
+        .dian4,
+        .dian5 {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background-color: #000;
+            top: 314px;
+            left: 657px;
+            border-radius: 50%;
+        }
+        .dian2 {
+            top: 190px;
+            left: 533px;
+        }
+        .dian3 {
+            top: 190px;
+            left: 781px;
+        }
+        .dian4 {
+            top: 438px;
+            left: 533px;
+        }
+        .dian5 {
+            top: 438px;
+            left: 781px;
+        }
+    </style>
+</head>
+<body>
+<div class="dian1"></div>
+<div class="dian2"></div>
+<div class="dian3"></div>
+<div class="dian4"></div>
+<div class="dian5"></div>
+<div id="box"></div>
+
+
+</body>
+<script>
+    var flag = true;
+    var box = document.getElementById("box")
+    var ul = document.createElement("ul");
+    box.appendChild(ul);
+    for (var i = 0; i < 225; i++) {
+        var li = document.createElement("li");
+        ul.appendChild(li);
+        var span = document.createElement("span")
+        li.appendChild(span);
+        var is = document.createElement("i");
+        span.appendChild(is);
+        span.onclick = function () {
+            if (this.children[0].style.backgroundImage) return;
+            this.children[0].style.display = "block";
+            this.style.opacity = 1;
+            if (flag) {
+                this.children[0].style.backgroundImage = "url(images/black.bmp)";
+            } else {
+                this.children[0].style.backgroundImage = "url(images/white.bmp)";
+            }
+            flag = !flag;
+        }
+        span.ondblclick = function () {
+            this.children[0].style.backgroundImage = "";
+            this.children[0].style.display = "none";
+            this.style.opacity = 0;
+            flag = !flag;
+        }
+    }
+</script>
+</html>
